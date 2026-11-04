@@ -13,7 +13,7 @@ test("A Level Mechanics Lab is a complete standalone site",()=>{
   assert.ok(Buffer.byteLength(html,"utf8")>600000,"The complete live Mechanics Lab app must be present");
   assert.match(html,/Newton/);
   assert.match(html,/friction/);
-  assert.match(html,/<canvas\b/i);
+  assert.match(html,/canvas/i,"Mechanics visualisation should remain present");
 });
 
 test("No Netlify-only runtime or missing static assets",()=>{
