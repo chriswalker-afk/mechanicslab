@@ -1,0 +1,21 @@
+name: Verify live Mechanics Lab custom domain
+on:
+  pull_request:
+    paths:
+      - scripts/verify-live-domain.mjs
+      - .github/workflows/verify-live-domain.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-website:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/verify-live-domain.mjs
