@@ -1,0 +1,20 @@
+name: Verify Mechanics Lab matches Netlify
+on:
+  pull_request:
+    paths:
+      - index.html
+      - scripts/verify-netlify-parity.mjs
+      - .github/workflows/verify-migration.yml
+permissions:
+  contents: read
+jobs:
+  parity:
+    name: Exact HTML equivalence (excluding Netlify injection)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/verify-netlify-parity.mjs
